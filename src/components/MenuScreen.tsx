@@ -31,8 +31,8 @@ const MenuScreen: React.FC<MenuScreenProps> = ({
       <div className="mb-6">
         <h3 className="font-bold text-slate-600 mb-2">{language === 'es' ? 'Idioma' : 'Language'}</h3>
         <div className="flex justify-center gap-2">
-          <button onClick={() => setLanguage('es')} className={`px-6 py-2 rounded-lg font-bold transition ${language === 'es' ? 'bg-blue-500 text-white shadow-md' : 'bg-slate-200 text-slate-700'}`}>Español</button>
-          <button onClick={() => setLanguage('en')} className={`px-6 py-2 rounded-lg font-bold transition ${language === 'en' ? 'bg-blue-500 text-white shadow-md' : 'bg-slate-200 text-slate-700'}`}>English</button>
+          <button onClick={() => setLanguage('es')} className={`px-6 py-2 rounded-lg font-bold transition ${language === 'es' ? 'bg-yellow-500 text-white shadow-md' : 'bg-slate-200 text-slate-700'}`}>Español</button>
+          <button onClick={() => setLanguage('en')} className={`px-6 py-2 rounded-lg font-bold transition ${language === 'en' ? 'bg-yellow-500 text-white shadow-md' : 'bg-slate-200 text-slate-700'}`}>English</button>
         </div>
       </div>
 
@@ -47,7 +47,7 @@ const MenuScreen: React.FC<MenuScreenProps> = ({
         </div>
       </div>
       
-      <button onClick={handleStartGame} className="w-full py-4 text-2xl bg-orange-500 text-white rounded-lg font-display hover:bg-orange-600 transition-transform transform hover:scale-105 shadow-lg">
+      <button onClick={handleStartGame} className="w-full py-4 text-2xl bg-blue-500 text-white rounded-lg font-display hover:bg-blue-600 transition-transform transform hover:scale-105 shadow-lg">
         {language === 'es' ? '¡Empezar!' : 'Start!'}
       </button>
 
