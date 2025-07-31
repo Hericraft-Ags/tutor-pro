@@ -107,11 +107,17 @@ const App: React.FC = () => {
       setCurrentPhraseIndex(prev => prev + 1);
       setTypedText('');
       startTimer(LEVEL_TIMES[level]);
+  
+      // 🔧 AÑADIR ESTA LÍNEA PARA REENFOCAR EL INPUT:
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 0);
     } else {
       setGameState('finished');
       stopTimer();
     }
   };
+  
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newTypedText = e.target.value;
@@ -132,6 +138,10 @@ const App: React.FC = () => {
     if (newTypedText === targetPhrase) {
       stopTimer();
     }
+
+    console.log('Typed:', newTypedText);
+console.log('Expected:', targetPhrase);
+
   };
 
   const handleRestart = () => {

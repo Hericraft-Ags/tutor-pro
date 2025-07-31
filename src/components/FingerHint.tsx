@@ -11,7 +11,7 @@ const FingerHint: React.FC<FingerHintProps> = ({ language, fingerHint }) => {
   return (
     <div className="text-center">
       <p className="text-slate-500 text-lg">
-        {language === 'es' ? 'Usa tu...' : 'Use your...'}
+        {language === 'es' ? 'Usa...' : 'Use...'}
       </p>
       <p className="text-2xl font-bold text-blue-600 font-display">
         {fingerHint}

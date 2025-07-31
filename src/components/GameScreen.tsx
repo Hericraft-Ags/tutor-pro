@@ -13,8 +13,10 @@ interface GameScreenProps {
   fingerHint: string;
   timeLeft: number;
   handleNextPhrase: () => void;
-  inputRef: React.RefObject<HTMLInputElement>;
+  inputRef: React.RefObject<HTMLInputElement | null>; // ✅ ESTA ES LA LÍNEA QUE DEBES CAMBIAR
+  handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
+
 
 const LEVEL_TIMES: Record<Level, number> = { 1: 30, 2: 15, 3: 5 };
 
@@ -29,6 +31,7 @@ const GameScreen: React.FC<GameScreenProps> = ({
   timeLeft,
   handleNextPhrase,
   inputRef,
+  handleInputChange,
 }) => {
   const targetPhrase = currentPhrases[currentPhraseIndex];
   const isCompleted = typedText === targetPhrase;
@@ -37,10 +40,6 @@ const GameScreen: React.FC<GameScreenProps> = ({
   useEffect(() => {
     inputRef.current?.focus();
   }, [inputRef]);
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTypedText(e.target.value);
-  };
 
   return (
     <div className="w-full max-w-3xl mx-auto p-4 md:p-8">
@@ -64,20 +63,24 @@ const GameScreen: React.FC<GameScreenProps> = ({
       <TypingPhrase targetPhrase={targetPhrase} typedText={typedText} />
 
       {/* Input oculto */}
+      <p>DEBUG: typedText = {typedText}</p>
+
       <input
-        ref={inputRef}
-        type="text"
-        value={typedText}
-        onChange={handleInputChange}
-        onBlur={() => inputRef.current?.focus()}
-        autoFocus
-        className="absolute -left-[9999px] opacity-0"
-        disabled={isCompleted}
-        autoComplete="off"
-        autoCorrect="off"
-        autoCapitalize="off"
-        spellCheck="false"
+      ref={inputRef}
+      type="text"
+      value={typedText}
+      onChange={handleInputChange} // ✅ viene desde App
+      onBlur={() => inputRef.current?.focus()}
+      autoFocus
+      className="absolute -left-[9999px] opacity-0"
+      disabled={isCompleted}
+      autoComplete="off"
+      autoCorrect="off"
+      autoCapitalize="off"
+      spellCheck="false"
       />
+
+
 
       {/* Indicador de dedo o botón siguiente */}
       <div className="h-24 mt-6 flex items-center justify-center">
