@@ -63,8 +63,6 @@ const GameScreen: React.FC<GameScreenProps> = ({
       <TypingPhrase targetPhrase={targetPhrase} typedText={typedText} />
 
       {/* Input oculto */}
-      <p>DEBUG: typedText = {typedText}</p>
-
       <input
       ref={inputRef}
       type="text"
