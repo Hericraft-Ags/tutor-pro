@@ -107,11 +107,17 @@ const App: React.FC = () => {
       setCurrentPhraseIndex(prev => prev + 1);
       setTypedText('');
       startTimer(LEVEL_TIMES[level]);
+  
+      // 🔧 AÑADIR ESTA LÍNEA PARA REENFOCAR EL INPUT:
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 0);
     } else {
       setGameState('finished');
       stopTimer();
     }
   };
+  
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newTypedText = e.target.value;
@@ -132,6 +138,10 @@ const App: React.FC = () => {
     if (newTypedText === targetPhrase) {
       stopTimer();
     }
+
+    console.log('Typed:', newTypedText);
+console.log('Expected:', targetPhrase);
+
   };
 
   const handleRestart = () => {
@@ -145,7 +155,7 @@ const App: React.FC = () => {
   return (
     <div
       className="min-h-screen w-full flex items-center justify-center p-4 bg-slate-100 bg-cover bg-center"
-      style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/cubes.png')" }}
+      style={{ backgroundImage: "url('https://cdn.pixabay.com/photo/2022/03/24/16/44/background-7089459_1280.png')" }}
     >
       <div className="w-full max-w-4xl">
         {gameState === 'menu' && (
